@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title> Van Gogh </title> 
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+	</head>
+	<body>
+		<header>
+			<div class = "header">
+				
+				<h1 class="vin"> Vincent Willem Van Gogh </h1>
+			</div>
+		</header>
+		<center>
+		<nav>
+			<ul class = "def">
+				<li><a href="#home">Home</a></li>
+				<li><a href="about/about.html">About</a></li>
+				<li><a href="Gallery/Gallery2.html">Gallery</a></li>
+				<li><a href="Login/Login2.html"> Login </a></li>
+				<li><a href="Forum/forum3.html"> Forums </a></li>
+				<li><a href="Museum/museums.html"> Museums </a></li>
+				<li><a href="Video/video.html"> Videos </a></li>
+				<li><a href="Quiz/startPage.html"> Quiz </a></li>
+			</ul>
+		</nav>
+		</center>
+		</br>
+		</br>
+		</div>
+<div class="abc" >
+
+
+
+
+<img id="aaa" class=back src="images/painting1.jpg" name="image" width="800" height="500" />
+
+
+
+
+
+
+
+<img class="vincent" src="images/van_gogh1.png" width=50% height=100%>
+<div class="des">
+<p class="nickName"></p>
+<span class="s">
+<p class="synopsis">
+"I dream of a painting and then I paint my dream."</br>
+-vincent Van Gogh
+</p>
+</span>
+</div>
+<script>
+var image = document.getElementById("aaa");
+var img_array=["images3/1.jpg","images3/2.jpg", "images3/3.jpg", "images3/4.jpg" ];
+var index=0;
+function slide()
+{
+
+    document["aaa"].src = img_array[index];
+    index++;
+    if(index>=img_array.length)
+    {
+    index=0;
+    }
+}
+setInterval("slide()",2000);
+</script>
+
+
+</body>
+</html>

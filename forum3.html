@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Forum</title>
+		<link rel="shortcut icon" href="titleImage.ico" />
+	</head>
+
+	<body>
+		
+		<h3 class=name>Vincent Willem van Gogh</h3>
+		<textarea placeholder="Enter content..." cols="100" rows="10"></textarea>
+		</br>
+		<input type="submit" id="sub" onclick="post()" value="post"/>
+		</br></br>
+	
+		<script type="text/javascript">
+			function like(){
+				localStorage.setItem("likes"+parseInt	(this.id),parseInt(localStorage.getItem("likes"+parseInt(this.id)))+1); 
+				location.reload();
+			}
+
+			function comment(){
+				if(this.previousSibling.previousSibling.value){
+				localStorage.setItem("noComments"+parseInt(this.id),parseInt(localStorage.getItem("noComments"+parseInt(this.id)))+1);
+				localStorage.setItem("comments"+parseInt(this.id)+"-"+localStorage.getItem("noComments"+parseInt(this.id)),this.previousSibling.previousSibling.value);
+				location.reload();
+				}
+				else window.alert("Comment field is blank,Please enter your comment!");
+			}
+
+			function post(){
+				var a1 = document.querySelector("textarea");
+				if(a1.value){
+				if(localStorage.count)
+					localStorage.count = parseInt(localStorage.count)+1;
+				else
+					localStorage.count = 1;
+				localStorage.setItem("content"+localStorage.count,a1.value);
+				localStorage.setItem("likes"+localStorage.count,"0");
+				localStorage.setItem("noComments"+localStorage.count,"0");
+				var dat = new Date();
+				localStorage.setItem("time"+localStorage.count,dat.getDate()+"/"+ (dat.getMonth()+1)+"/" + dat.getFullYear()+" "+dat.getHours() +":"+dat.getMinutes());
+				location.reload();
+				}
+				else 
+					window.alert("Please enter content in the textbox!");
+			}
+			for(var lv=1;lv<=parseInt(localStorage.count);lv+=1){
+				var a = document.createElement("div");a.id = lv;
+				a.style.backgroundColor="blue";
+				var b = document.createElement("hr");
+				//a.style.height = "40%";a.style.width = "80%";
+				a.style.border = "solid black 2px";
+				a.innerHTML = localStorage.getItem("content"+lv);
+				var tAndP = document.createElement("div");tAndP.id = lv;
+				tAndP.style.backgroundColor = "gray";
+				tAndP.innerHTML = "Posted at "+localStorage.getItem("time"+lv)+" by "+"tobedone";
+				var c = document.createElement("input");
+				c.type = "submit";c.value = "like";c.onclick = like;
+				c.id = lv;
+				var e = document.createElement("div");
+				e.innerHTML = "Likes "+ localStorage.getItem("likes"+lv) + "  Comments:";
+				e.appendChild(document.createElement("br"));
+				for(var zz=1;zz<=localStorage.getItem("noComments"+lv);zz++){
+					var n = document.createElement("div");
+					n.style.border = "solid black 1px";
+					n.innerHTML=localStorage.getItem("comments"+lv+"-"+zz);
+					e.appendChild(n);
+				}	
+				e.appendChild(document.createElement("br"));
+				var f = document.createElement("input");f.type="text";
+				e.appendChild(f);f.placeholder = "Enter comment here...";
+				//f.width = "80px";
+				e.appendChild(document.createElement("br"));
+				var g = document.createElement("input");
+				g.type = "submit";g.value = "Post comment";
+				g.onclick = comment;g.id = lv;
+				e.appendChild(g);
+				e.appendChild(document.createElement("br"));
+				document.body.appendChild(document.createElement("br"));
+				document.body.appendChild(document.createElement("br"));
+				document.body.appendChild(a);
+				document.body.appendChild(tAndP);
+				document.body.appendChild(c);
+				document.body.appendChild(e)
+				document.body.appendChild(b);
+				document.body.appendChild(document.createElement("br"));
+				document.body.appendChild(document.createElement("br"));
+			}
+		</script>
+	</body>
+</html>
+
